@@ -11,7 +11,7 @@ steps:
   image: plugins/docker
   settings:
     repo: liquidinvestigations/extra-docker-image-builds
-    dockerfile: Dockerfile
+    dockerfile: postgres-12-contrib/Dockerfile
     context: "postgres-12-contrib/"
     auto_tag: true
     auto_tag_suffix: postgres-12-contrib
@@ -26,7 +26,7 @@ steps:
   image: plugins/docker
   settings:
     repo: liquidinvestigations/extra-docker-image-builds
-    dockerfile: Dockerfile
+    dockerfile: pgwatch2-grafana-plugin/Dockerfile
     context: "pgwatch2-grafana-plugin/"
     auto_tag: true
     auto_tag_suffix: pgwatch2-grafana-plugin
