@@ -1,0 +1,51 @@
+kind: pipeline
+name: publish to docker hub
+
+trigger:
+  event:
+  - push
+  - tag
+
+steps:
+- name: postgresql-11-contrib
+  image: plugins/docker
+  settings:
+    repo: liquidinvestigations/extra-docker-image-builds
+    dockerfile: Dockerfile
+    context: "postgresql-11-contrib/"
+    auto_tag: true
+    auto_tag_suffix: postgresql-11-contrib
+
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+
+
+- name: pgwatch2-grafana-plugin
+  image: plugins/docker
+  settings:
+    repo: liquidinvestigations/extra-docker-image-builds
+    dockerfile: Dockerfile
+    context: "pgwatch2-grafana-plugin/"
+    auto_tag: true
+    auto_tag_suffix: pgwatch2-grafana-plugin
+
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+
+---
+kind: secret
+name: docker_username
+get:
+  path: liquid/ci/drone.docker
+  name: username
+
+---
+kind: secret
+name: docker_password
+get:
+  path: liquid/ci/drone.docker
+  name: password
