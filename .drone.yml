@@ -7,14 +7,14 @@ trigger:
   - tag
 
 steps:
-- name: postgresql-11-contrib
+- name: postgres-12-contrib
   image: plugins/docker
   settings:
     repo: liquidinvestigations/extra-docker-image-builds
     dockerfile: Dockerfile
-    context: "postgresql-11-contrib/"
+    context: "postgres-12-contrib/"
     auto_tag: true
-    auto_tag_suffix: postgresql-11-contrib
+    auto_tag_suffix: postgres-12-contrib
 
     username:
       from_secret: docker_username
